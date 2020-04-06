@@ -1,0 +1,111 @@
+package fr.eseo.cc3.dao.bean;
+
+import java.io.Serializable;
+
+public class VirtualMachine implements Serializable{
+	
+	private static final long serialVersionUID = 8479348489401693576L;
+	private long numVm;
+	private String nomVm;
+	private String refVm;
+	private int serveur;
+	private String dateCreation;
+	private String dateRendu;
+	private String derniereConnexion;
+	
+	public VirtualMachine(){
+		this.numVm = 0;
+		this.nomVm = "";
+		this.refVm = "";
+		this.serveur = 0;
+		this.dateCreation = "";
+		this.dateRendu = "";
+		this.derniereConnexion = "";
+	}
+
+	public VirtualMachine(long numVm, String nomVm, String refVm, int serveur, String dateCreation, String dateRendu,
+			String derniereConnexion) {
+		super();
+		this.numVm = numVm;
+		this.nomVm = nomVm;
+		this.refVm = refVm;
+		this.serveur = serveur;
+		this.dateCreation = dateCreation;
+		this.dateRendu = dateRendu;
+		this.derniereConnexion = derniereConnexion;
+	}
+
+	public VirtualMachine(String nomVm, String refVm, int serveur, String dateCreation, String dateRendu,
+			String derniereConnexion) {
+		super();
+		this.nomVm = nomVm;
+		this.refVm = refVm;
+		this.serveur = serveur;
+		this.dateCreation = dateCreation;
+		this.dateRendu = dateRendu;
+		this.derniereConnexion = derniereConnexion;
+	}
+
+	public long getNumVm() {
+		return numVm;
+	}
+
+	public void setNumVm(long numVm) {
+		this.numVm = numVm;
+	}
+
+	public String getNomVm() {
+		return nomVm;
+	}
+
+	public void setNomVm(String nomVm) {
+		this.nomVm = nomVm;
+	}
+
+	public String getRefVm() {
+		return refVm;
+	}
+
+	public void setRefVm(String refVm) {
+		this.refVm = refVm;
+	}
+
+	public int getServeur() {
+		return serveur;
+	}
+
+	public void setServeur(int serveur) {
+		this.serveur = serveur;
+	}
+
+	public String getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(String dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public String getDateRendu() {
+		return dateRendu;
+	}
+
+	public void setDateRendu(String dateRendu) {
+		this.dateRendu = dateRendu;
+	}
+
+	public String getDerniereConnexion() {
+		return derniereConnexion;
+	}
+
+	public void setDerniereConnexion(String derniereConnexion) {
+		this.derniereConnexion = derniereConnexion;
+	}
+
+	@Override
+	public String toString() {
+		return "VirtualMachine [numVm=" + numVm + ", nomVm=" + nomVm + ", refVm=" + refVm + ", serveur=" + serveur
+				+ ", dateCreation=" + dateCreation + ", dateRendu=" + dateRendu + ", derniereConnexion="
+				+ derniereConnexion + "]";
+	}
+}

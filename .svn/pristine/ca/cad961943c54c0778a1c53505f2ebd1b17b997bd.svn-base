@@ -1,0 +1,88 @@
+package fr.eseo.cc3.dao.bean;
+
+import java.io.Serializable;
+
+public class Serveur implements Serializable{
+
+	private static final long serialVersionUID = 5145409292963150236L;
+	private long numServeur;
+	private String nomServeur;
+	private String ipServeur;
+	private String identifiant;
+	private String passDecrypte;
+	private boolean afficher;
+	
+	public Serveur(long numServeur, String nomServeur, String ipServeur, String identifiant, String passDecrypte, boolean afficher) {
+		this.numServeur = numServeur;
+		this.nomServeur = nomServeur;
+		this.ipServeur = ipServeur;
+		this.identifiant = identifiant;
+		this.passDecrypte = passDecrypte;
+	}
+	
+	public Serveur(String nomServeur, String ipServeur, String identifiant, String passDecrypte, boolean afficher) {
+		this(Long.valueOf(0), nomServeur, ipServeur, identifiant, passDecrypte, afficher);
+	}
+	
+	public Serveur(long numServeur, String nomServeur, String ipServeur, boolean afficher) {
+		this(numServeur, nomServeur, ipServeur, "", "", afficher);
+	}
+			
+	public Serveur(){
+		this(Long.valueOf(0), "", "", "", "", false);
+	}
+
+	public long getNumServeur() {
+		return numServeur;
+	}
+
+	public void setNumServeur(long numServeur) {
+		this.numServeur = numServeur;
+	}
+
+	public String getNomServeur() {
+		return nomServeur;
+	}
+
+	public void setNomServeur(String nomServeur) {
+		this.nomServeur = nomServeur;
+	}
+
+	public String getIpServeur() {
+		return ipServeur;
+	}
+
+	public void setIpServeur(String ipServeur) {
+		this.ipServeur = ipServeur;
+	}
+
+	public String getIdentifiant() {
+		return identifiant;
+	}
+
+	public void setIdentifiant(String identifiant) {
+		this.identifiant = identifiant;
+	}
+
+	public String getPassDecrypte() {
+		return passDecrypte;
+	}
+
+	public void setPassDecrypte(String passDecrypte) {
+		this.passDecrypte = passDecrypte;
+	}
+
+	public boolean isAfficher() {
+		return afficher;
+	}
+
+	public void setAfficher(boolean afficher) {
+		this.afficher = afficher;
+	}
+
+	@Override
+	public String toString() {
+		return "Serveur [numServeur=" + numServeur + ", nomServeur=" + nomServeur + ", ipServeur=" + ipServeur
+				+ ", identifiant=" + identifiant + ", passDecrypte=" + passDecrypte + ", afficher=" + afficher + "]";
+	}
+}

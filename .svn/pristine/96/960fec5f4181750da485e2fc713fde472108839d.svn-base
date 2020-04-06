@@ -1,0 +1,158 @@
+package fr.eseo.cc3.model.vm;
+
+
+
+
+/**
+ * 
+ * @author CC groupe 3
+ *
+ *
+ * La classe {@link fr.eseo.cc3.model.vm.ScsiAdapters.java} est un attribut de la classe {@link fr.eseo.cc3.model.vm.VirtualMachine.java}.
+ * 
+ */
+public class ScsiAdapters {
+
+	
+	private int scsi_bus;
+	private int scsi_unit;
+	private String label;
+	private String type;
+	private String sharing;
+	private String key;
+	
+	
+	
+	
+	/**
+	 * Constructeur de la classe {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * Le constructeur ne requiert aucun parametre
+	 * 
+	 * */
+	public ScsiAdapters() {
+		
+	}
+	
+
+	
+	
+	/**
+	 * Accesseur getScsiBus() recupere le scsi_bus du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * 
+	 * @return [type: int] scsi_bus du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * */
+	public int getScsiBus() {
+		return this.scsi_bus;
+	}
+	/**
+	 * Accesseur setScsiBus() definis le scsi_bus du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * 
+	 * @param [type: int] scsi_bus du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * */
+	public void setScsiBus(int bus) {
+		this.scsi_bus = bus;
+	}
+	
+	
+	
+	
+	/**
+	 * Accesseur getScsiUnit() recupere le scsi_unit du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * 
+	 * @return [type: int] scsi_unit du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * */
+	public int getScsiUnit() {
+		return this.scsi_unit;
+	}
+	/**
+	 * Accesseur setScsiUnit() definis le scsi_unit du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * 
+	 * @param [type: int] scsi_unit du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * 
+	 * */
+	public void setScsiUnit(int unit) {
+		this.scsi_unit = unit;
+	}
+	
+	
+	
+	
+	/**
+	 * Accesseur getLabel() recupere le label du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * 
+	 * @return [type: String] label du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * */
+	public String getLabel() {
+		return this.label;
+	}
+	/**
+	 * Accesseur setLabel() definis le label du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * 
+	 * @param [type: String] label du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * */
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	
+	
+	
+	/**
+	 * Accesseur getType() recupere le type du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * 
+	 * @return [type: String] type du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * */
+	public String getType() {
+		return this.type;
+	}
+	/**
+	 * Accesseur setType() definis le type du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * 
+	 * @param [type: String] type du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * */
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	
+	
+	
+	/**
+	 * Accesseur getSharing() recupere le sharing du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * 
+	 * @return [type: String] sharing du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * */
+	public String getSharing() {
+		return this.sharing;
+	}
+	/**
+	 * Accesseur setSharing() definis le sharing du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * 
+	 * @param [type: String] sharing du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * */
+	public void setSharing(String sharing) {
+		this.sharing = sharing;
+	}
+	
+	
+	
+	
+	/**
+	 * Accesseur getKey() recupere le key du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * 
+	 * @return [type: String] key du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * */
+	public String getKey() {
+		return this.key;
+	}
+	/**
+	 * Accesseur setKey() definis le key du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * 
+	 * @param [type: String] key du {@link fr.eseo.cc3.model.vm.ScsiAdapters.java}.
+	 * */
+	public void setKey(String key) {
+		this.key = key;
+	}
+	
+	
+
+}

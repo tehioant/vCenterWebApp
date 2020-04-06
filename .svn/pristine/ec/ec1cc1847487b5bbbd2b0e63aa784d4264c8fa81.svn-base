@@ -1,0 +1,37 @@
+package fr.eseo.cc3.model.exception;
+
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+
+
+public class TestErrorConnectionVSphere {
+	
+	@Test
+	public void testConstructeurFull() {
+		ErrorConnectionVSphere connection = new ErrorConnectionVSphere("testMessage",500,"testAction");
+		assertEquals(connection.getAction(),"testAction");
+		assertEquals(connection.getCodeErreur(),500);
+
+	}
+	
+	@Test
+	public void testConstructeurMessage() {
+		ErrorConnectionVSphere connection = new ErrorConnectionVSphere("testMessage");
+		assertEquals(connection.getAction(),"erreur interne");
+		assertEquals(connection.getCodeErreur(),1000);
+
+	}
+	
+	@Test
+	public void testGetAction() {
+		ErrorConnectionVSphere connection = new ErrorConnectionVSphere("testName");
+		assertEquals(connection.getAction(),"erreur interne");
+	}
+	
+	@Test
+	public void testGetCodeErreur() {
+		ErrorConnectionVSphere connection = new ErrorConnectionVSphere("testName");
+		assertEquals(connection.getCodeErreur(),1000);
+	}
+
+}

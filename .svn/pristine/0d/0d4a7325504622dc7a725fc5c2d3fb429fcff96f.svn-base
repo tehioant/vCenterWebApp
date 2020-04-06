@@ -1,0 +1,318 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+   pageEncoding="ISO-8859-1"%>
+<!--  IMPORT des ressources  -->
+<%@page import="java.util.ArrayList"%>
+<%@page import="fr.eseo.cc3.model.*"%>
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.text.NumberFormat"%>
+<%@page import="fr.eseo.cc3.dao.bean.Utilisateur"%>
+<%@page import="fr.eseo.cc3.dao.bean.Cour"%>
+<%@page import="fr.eseo.cc3.dao.DAOFactory"%>
+<%@ page import="java.util.*, java.util.Date"%>
+<%-- <!--  Redirection en cas d'erreur  -->
+   <%@ page errorPage="../pagesErreur/ErrorCompilation.jsp"%>
+    --%>
+<!DOCTYPE html>
+<html>
+   <head>
+   	<meta charset="ISO-8859-1">
+      <%@include file="../Commun/head.html"%>
+      <link rel="stylesheet" type="text/css"
+         href="${pageContext.request.contextPath}/css/Administrateur/accueilAdmin.css" />
+      <script
+         src="${pageContext.request.contextPath}/javascript/Administrateur/changementOnglet.js"></script>
+      <title>Accueil</title>
+   </head>
+   <body>
+       <% int banniere = (int) request.getAttribute("banniere"); %>
+         <% int banniere1 = (int) request.getAttribute("banniere1"); %>
+         
+         <% if(banniere == 1) {%>
+         <div class="container">
+         	<br />
+         	<div class="alert alert-danger">
+         		<button type="button" class="close" data-dismiss="alert"
+         			aria-hidden="true">&times;</button>
+         
+         		<p>Vous ne pouvez pas supprimer une Vm sous tension</p>
+         
+         
+         	</div>
+         	<!-- Fin du bandeau d'alerte changement etat Vm -->
+         
+         	<script> 
+                          $('#myButton').click(function(){ /* AprÃ¨s le clic sur l'Ã©lÃ©ment dont l'id est "myButton" (le bouton dans notre cas) "*/
+                                $('.alert').alert('close'); /* Faire disparaitre le bandeau d'alerte*/
+                          }); 
+                    </script>
+         </div>
+         
+         <%} %>
+         
+         <% if(banniere1 == 1) {%>
+         <div class="container">
+         	<br />
+         	<div class="alert alert-info">
+         		<button type="button" class="close" data-dismiss="alert"
+         			aria-hidden="true">&times;</button>
+         
+         		<p>La VM est déjà dans l'état que vous souhaitez.</p>
+         
+         	</div>
+         	<!-- Fin du bandeau d'alerte lorsqu'on allume/Ã©teint une Vm dÃ©jÃ  allumÃ©/Ã©teinte -->
+         
+         	<script> 
+                          $('#myButton').click(function(){ /* AprÃ¨s le clic sur l'Ã©lÃ©ment dont l'id est "myButton" (le bouton dans notre cas) "*/
+                                $('.alert').alert('close'); /* Faire disparaitre le bandeau d'alerte*/
+                          }); 
+                    </script>
+         </div>
+         
+         <%} %> 
+      <%
+         ArrayList<DataStore> listeDatastore = (ArrayList<DataStore>) request.getAttribute("listeDatastore");
+         ArrayList<Host> listeHost = (ArrayList<Host>) request.getAttribute("listeHost");
+         ArrayList<VirtualMachine> listeVm = (ArrayList<VirtualMachine>) session.getAttribute("listeVm");
+         %>
+      <jsp:include page="../Commun/navBar.jsp">
+            <jsp:param name="servletOut" value="AccueilAdmin" />
+         </jsp:include>
+      <div id="wrapper">
+         
+         <div class="overlay"></div>
+         <%@include file="Composants/sideBarAdmin.jsp"%>
+      </div>
+         <section>
+            <div class="container">
+               <ul class="nav nav-tabs">
+                  <li><a
+                     href="javascript:ChangeOngletAccueil('tab_resume', 'resume');"
+                     id="tab_resume">Résumé</a></li>
+                  <li><a
+                     href="javascript:ChangeOngletAccueil('tab_datastore', 'datastore');"
+                     id="tab_datastore">Datastore</a></li>
+                  <li><a
+                     href="javascript:ChangeOngletAccueil('tab_host', 'host');"
+                     id="tab_host">Hyperviseur ESX</a></li>
+                  <li><a href="javascript:ChangeOngletAccueil('tab_vm', 'vm');"
+                     id="tab_vm">Machines Virtuelles</a></li>
+                  <li><a
+                     href="javascript:ChangeOngletAccueil('tab_user', 'user');"
+                     id="tab_user">Utilisateur</a></li>
+               </ul>
+            </div>
+         </section>
+         <div id="resume" class="content" style="display: block">
+            <!-- RÃ©sumÃ© -->
+            <div class="container">
+               <ul class="list-group" style="margin-top: 10px">
+                  <li class="list-group-item list-group-item-info">
+                     <p>
+                        Hôtes Hyperviseur ESX : <small><%=listeHost.size()%></small>
+                     </p>
+                  </li>
+                  <li class="list-group-item list-group-item-info">
+                     <p>
+                        Machines Virtuelles : <small><%=listeVm.size()%></small>
+                     </p>
+                  </li>
+                  <li class="list-group-item list-group-item-info">
+                     <p>
+                        Datastore : <small><%=listeDatastore.size()%></small>
+                     </p>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div id="host" class="content">
+            <!-- Hosts  -->
+            <div class="container">
+               <table class="table table-striped">
+                  <thead>
+                     <tr>
+                        <th>Nom</th>
+                        <th>Etat</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <%
+                        for (Host host : listeHost) {
+                        %>
+                     <tr>
+                        <td>
+                           <form action="ServletHost" method="get">
+                              <input type=submit class="btn btn-link"
+                                 value=<%=host.getName()%>> <input type=hidden
+                                 name=hostId value=<%=host.getHost()%>> <input
+                                 type=hidden name=hostName value=<%=host.getName()%>>
+                           </form>
+                        </td>
+                        <td><%=host.getConnectionState().toLowerCase()%></td>
+                     </tr>
+                     <%
+                        }
+                        %>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         <div id="datastore" class="content">
+            <!-- Datastore -->
+            <div class="container">
+               <table class="table table-striped">
+                  <thead>
+                     <tr>
+                        <th>Nom</th>
+                        <th>Type</th>
+                        <th>Libre</th>
+                        <th>Capacité</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <%
+                        NumberFormat nf = new DecimalFormat("0.##");
+                        
+                        for (DataStore ds : listeDatastore) {
+                        %>
+                     <tr>
+                        <td>
+                           <!-- 
+                              <form action="ServletDatastore" method="post">
+                                    <input type= submit class="btn btn-link" value = <%=ds.getName()%>>
+                                    <input type = hidden name = datastoreId value = <%=ds.getDatastore()%>>
+                                     <input type = hidden name = datastoreName value = <%=ds.getName()%>>
+                                    </form> --> <%=ds.getName()%>
+                        </td>
+                        <td><%=ds.getType()%></td>
+                        <td><%=nf.format((float) ds.getFreeSpace() / 1000000000) + " Go"%></td>
+                        <td><%=nf.format((float) ds.getCapacity() / 1000000000) + " Go"%></td>
+                        <td></td>
+                     </tr>
+                     <%
+                        }
+                        %>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         <div id="vm" class="content" style="margin-top: 10px">
+            <div class="container">
+               <div>
+                  <form>
+                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                        data-target="#myModal"  style="margin-right: 10px" >Créer une Vm</button>
+                  </form>
+                  <!-- 					<Label>Allumer et eteindre toutes les VMs </Label> -->
+                  <form action="ChangementEtatListeVm" method="post"
+                     >
+                     <input type=submit class="btn btn-success btn-lg"
+                        aria-hidden="true" value="Allumer" title="Allumer toutes les VMs !" > <input type=hidden
+                        name=etat value="1">
+                  </form>
+                  <form action="ChangementEtatListeVm" method="post"
+                     style="margin-left: 10px">
+                     <input type=submit class="btn btn-warning btn-lg"
+                        aria-hidden="true" value="Eteindre" title="Eteindre toutes les VMs !" > <input type=hidden
+                        name=etat value="0">
+                  </form>
+                  <%@include file="Composants/creationVmAdmin.jsp"%>
+               </div>
+            </div>
+            <!-- VMs -->
+            <div class="container">
+               <table class="table table-striped">
+                  <thead>
+                     <tr>
+                        <th>Nom</th>
+                        <th>Etat</th>
+                        <th>Propriétaire</th>
+                        <th>Nombre CPU</th>
+                        <th>Mémoire Maximum</th>
+                        <th>Actions</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <%
+                        String etat;
+                        for (VirtualMachine vm : listeVm) {
+                        	switch (vm.getPowerState()) {
+                        	case ("POWERED_OFF"):
+                        		etat = "danger";
+                        		break;
+                        	case ("POWERED_ON"):
+                        		etat = "success";
+                        		break;
+                        	case ("SUSPENDED"):
+                        		etat = "warning";
+                        		break;
+                        	default:
+                        		etat = "inconnus";
+                        	}
+                        %>
+                     <tr>
+                        <td>
+                           <form action="VirtualMachine" method="get">
+                              <input type=submit class="btn btn-link" value=<%=vm.getName()%>>
+                              <input type=hidden name=vmId value=<%=vm.getVm()%>> <input
+                                 type=hidden name=vmName value=<%=vm.getName()%>>
+                           </form>
+                        </td>
+                        <td ><button type="button" class="btn btn-<%= etat %>">
+                           <span class="glyphicon glyphicon-off" aria-hidden="true"></span></button>
+                        </td>
+                        <td><%="N.A"%></td>
+                        <td><%=vm.getCpu().getCount()%></td>
+                        <td ><%=vm.getMemorySizeMIB().getSize_MiB() + " MiB"%></td>
+                        <td>
+                           <jsp:include page="Composants/actionAdmin.jsp">
+                              <jsp:param name="vmId" value="<%=vm.getVm()%>" />
+                              <jsp:param name="vmName" value="<%=vm.getName()%>" />
+                           </jsp:include>
+                        </td>
+                     </tr>
+                     <%
+                        }
+                        %>
+                      
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         <div id="user" class="content">
+            <div class="container">
+               
+            <table class="table table-striped">
+               <thead>
+                  <tr>
+                     <th>#</th>
+                     <th>Utilisateur</th>
+                     <th>Nombres machines</th>
+                     <th>Détails</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <%
+                     for (Utilisateur user : listeUser) {
+                     %>
+                  <tr>
+                     <td><%=user.getNumUtilisateur()%></td>
+                     <td><%=user.getNomUtilisateur()%></td>
+                     <td><%=((DAOFactory) getServletContext().getAttribute("daofactory")).getVirtualMachineDao()
+                        .getUserVm(user, (int) session.getAttribute("serveur")).size()%></td>
+                     <td>
+                        <form action="UtilisateurRessource" method="get">
+                           <input type=submit class="btn btn-info" value="Détails"> <input type=hidden
+                              name=nomuser value=<%=user.getNomUtilisateur()%>>
+                        </form>
+                     </td>
+                  </tr>
+                  <%
+                     }
+                     %>
+               </tbody>
+            </table>
+         </div>
+      </div>
+     
+   </body>
+</html>

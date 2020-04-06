@@ -1,0 +1,102 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
+<!--  IMPORT des ressources  -->
+<%@page import="java.util.ArrayList"%>
+<%@page import="fr.eseo.cc3.model.*"%>
+<%@page import="fr.eseo.cc3.model.vm.*"%>
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.text.NumberFormat"%>
+<%@page import="fr.eseo.cc3.dao.bean.Utilisateur"%>
+<%@ page import="java.util.*, java.util.Date"%>
+
+<!--  Redirection en cas d'erreur  -->
+<%@ page errorPage="../pagesErreur/ErrorCompilation.jsp"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<%@include file="../Commun/head.html"%>
+
+<title>VirtualMachine Etudiant</title>
+</head>
+
+<body>
+	<%
+		VirtualMachine virtualmachine = (VirtualMachine) request.getAttribute("virtualMachine");
+	%>
+	
+	<jsp:include page="../Commun/navBar.jsp">
+			<jsp:param name="servletOut" value="AccueilReferent" />
+		</jsp:include>
+	<div id="wrapper">
+	<div class="overlay"></div>
+		
+		<%@include file="Composants/sideBarRef.jsp"%>
+
+		<section>
+			<div class="container">
+
+				<ul class="nav nav-tabs">
+					<li><a href="javascript:ChangeOnglet('tab_vm', 'vm');"
+						id="tab_vm">VMs</a></li>
+				</ul>
+
+			</div>
+
+		</section>
+
+		<div id="vmdetails" class="content"
+			style="display: block">
+			<!-- VirtualMachine details  -->
+			<div class="container">
+
+				<jsp:include page="../Commun/boutonConsole.jsp">
+					<jsp:param name="vmName" value="<%=virtualmachine.getName()%>" />
+				</jsp:include>
+
+				<div class="VMdetails">
+
+					<div id="Titre">
+						<h4>
+							Nom :
+							<%=virtualmachine.getName()%>
+						</h4>
+						<h4>
+							VM :
+							<%=request.getAttribute("name")%>
+						</h4>
+					</div>
+
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Mémoire</th>
+								<th>Disque</th>
+								<th>Etat</th>
+								<th>Nics</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Taille (Mib) : <%=virtualmachine.getMemorySizeMIB().getSize_MiB()%>
+									<br> hot_add_enabled : <%=virtualmachine.getMemorySizeMIB().getHot_add_enabled()%></td>
+								<td>label : <%=virtualmachine.getDisk().getLabel()%> <br>
+									capacity : <%=virtualmachine.getDisk().getCapacity()%></td>
+								<td><%=virtualmachine.getPowerState()%></td>
+								<td>mac_address : <%=virtualmachine.getNics().getMac_address()%></td>
+							</tr>
+
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+</body>
+</html>

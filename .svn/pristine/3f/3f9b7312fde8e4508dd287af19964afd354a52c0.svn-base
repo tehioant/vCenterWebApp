@@ -1,0 +1,35 @@
+package fr.eseo.cc3.dao._interface;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import fr.eseo.cc3.dao.bean.Cour;
+import fr.eseo.cc3.dao.bean.Utilisateur;
+import fr.eseo.cc3.dao.bean.VirtualMachine;
+import fr.eseo.cc3.dao.exception.DAOException;
+
+public interface UtilisateurDao {
+
+    void creer( Utilisateur utilisateur ) throws DAOException;
+    
+    void modifier( Utilisateur utilisateur) throws DAOException;
+    
+    void supprimer( Utilisateur utilisateur) throws DAOException;
+
+    Utilisateur trouver( String nomUtilisateur ) throws DAOException;
+    
+    ArrayList<Utilisateur> listerUtilisateurCours(Cour cours) throws DAOException;
+    
+    ArrayList<Utilisateur> getReferent(Cour cours) throws DAOException,SQLException;
+   
+    ArrayList<Utilisateur> lister() throws DAOException;
+    
+    ArrayList<Utilisateur> getReferentUser(Utilisateur utilisateur) throws DAOException;
+    
+    ArrayList<Utilisateur> listerReferent() throws DAOException;
+    
+    Utilisateur getUserVm(VirtualMachine vm) throws DAOException,SQLException;
+    
+    
+    
+}

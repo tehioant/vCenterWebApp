@@ -1,0 +1,108 @@
+package fr.eseo.cc3.model;
+
+public class DataStore{
+
+
+	private String name;
+	private String type;
+	private long freeSpace;
+	private long capacity;
+	private String datastore;
+	private String accessible;
+	private String multipleHostAccess;
+	private String thinProvisioningSupported;
+
+
+
+	//Constructeur avec paramétre
+
+	public DataStore(String pDatastore, String pName, String pType, long pFreeSpace, long pCapacity, String pAccessible, String pMultipleHostAccess, String pThinProvisioningSupported) {
+		this.datastore = pDatastore;
+		this.name = pName;
+		this.type = pType;
+		this.freeSpace = pFreeSpace;
+		this.capacity = pCapacity;
+		this.accessible = pAccessible;
+		this.multipleHostAccess = pMultipleHostAccess;
+		this.thinProvisioningSupported = pThinProvisioningSupported;
+	}
+
+	public DataStore(String pDatastore, String pName, String pType, long pFreeSpace, long pCapacity) {
+		this(pDatastore, pName, pType, pFreeSpace, pCapacity, null, null, null);
+	}
+
+	public DataStore(String pAccessible, String pMultipleHostAccess, String pName, String pType, long pFreeSpace, String pThinProvisioningSupported) {
+		this(null, pName, pType, pFreeSpace, 0, pAccessible, pMultipleHostAccess, pThinProvisioningSupported);
+	}
+
+
+	//Constructeur par default
+
+	public DataStore() {
+		this(null, null, null, 0, 0, null, null, null);
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public String getType() {
+		return this.type;
+	}
+
+	public long getFreeSpace() {
+		return this.freeSpace;
+	}
+
+	public long getCapacity() {
+		return this.capacity;
+	}
+
+	public String getDatastore() {
+		return this.datastore;
+	}
+
+	public String getAccessible() {
+		return this.accessible;
+	}
+
+	public String getMultipleHostAccess() {
+		return this.multipleHostAccess;
+	}
+
+	public String getThinProvisioningSupported() {
+		return this.thinProvisioningSupported;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setFreeSpace(int freeSpace) {
+		this.freeSpace = freeSpace;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public void setDatastore(String datastore) {
+		this.datastore = datastore;
+	}
+
+	public void setAccessible(String accessible) {
+		this.accessible = accessible;
+	}
+
+	public void setMultipleHostAccess(String multipleHostAccess) {
+		this.multipleHostAccess = multipleHostAccess;
+	}
+
+	public void setThinProvisioningSupported(String thinProvisioningSupported) {
+		this.thinProvisioningSupported = thinProvisioningSupported;
+	}
+}

@@ -1,0 +1,112 @@
+package fr.eseo.cc3.servlet;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import fr.eseo.cc3.clientapi.ClientVSphere;
+import fr.eseo.cc3.dao.DAOFactory;
+import fr.eseo.cc3.dao._interface.CourDao;
+import fr.eseo.cc3.dao._interface.UtilisateurDao;
+import fr.eseo.cc3.dao._interface.VirtualMachineDao;
+import fr.eseo.cc3.dao.bean.Cour;
+import fr.eseo.cc3.dao.bean.Utilisateur;
+import fr.eseo.cc3.dao.bean.VirtualMachine;
+import fr.eseo.cc3.json.JsonReader;
+import fr.eseo.cc3.model.exception.ErrorConnectionVSphere;
+
+/**
+ * Servlet implementation class ServletAccueilEtudiant
+ */
+@WebServlet(urlPatterns = { "/AccueilEtudiant" }, name = "ServletAccueilEtudiant")
+public class ServletAccueilEtudiant extends ServletCommon {
+	private static final long serialVersionUID = 1L;
+
+	private static CourDao coursDaoImpl;
+	private static VirtualMachineDao virtualMachineDao;
+	private static UtilisateurDao utilisateurDao;
+
+	/**
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
+		String out=this.checkRole(PAGE_ERREUR_DROITS, PAGE_ERREUR_DROITS, "WEB-INF/Etudiant/accueilEtu.jsp", utilisateur);
+
+		int numServeur = (int) request.getSession().getAttribute("serveur");
+		
+		if(out.equals(PAGE_ERREUR_DROITS)) {
+			this.getServletContext().getRequestDispatcher(out).forward( request, response );
+		}else {
+
+
+			try {
+				int banniere = (int) request.getAttribute("banniere");
+				request.setAttribute("banniere", banniere);
+
+			} catch (NullPointerException e) {
+				request.setAttribute("banniere", 0);
+			} 
+			
+			try {
+				int banniere1 = (int) request.getAttribute("banniere1");
+				request.setAttribute("banniere1", banniere1);
+
+			} catch (NullPointerException e) {
+				request.setAttribute("banniere1", 0);
+			}
+			
+			try {
+				
+			DAOFactory dao = ((DAOFactory) getServletContext().getAttribute("daofactory" ));
+			virtualMachineDao = dao.getVirtualMachineDao();
+			coursDaoImpl = dao.getCourDao();
+			utilisateurDao = dao.getUtilisateurDao();
+
+			String reponseVm="";
+
+			HttpSession session = request.getSession();
+			Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
+
+			ClientVSphere client = getClient(request);
+			JsonReader reader = new JsonReader();
+			StringBuilder stringBuilder = new StringBuilder();
+
+			session.setAttribute("referentUtilisateur", utilisateurDao.getReferentUser(user));
+
+			ArrayList<VirtualMachine> listevm =  virtualMachineDao.getUserVm(user, numServeur);
+			ArrayList<Cour> listeCours = coursDaoImpl.getCourUtilisateurNonInscrit(user, numServeur);
+
+			//Utilisation d'un string builder pour concaténer les strings car plus propre selon sonar
+			stringBuilder.append(CONFIGURATION_API.getString("GET_VM")+"?filter.vms.1="+listevm.get(0).getRefVm());
+
+			for (int i =1; i <listevm.size();i++) {
+
+				stringBuilder.append("&filter.vms."+(i+1)+"="+listevm.get(i).getRefVm());
+			}
+
+			
+				reponseVm = client.getData(stringBuilder.toString());
+				ArrayList<fr.eseo.cc3.model.VirtualMachine> listeVm = reader.getListVirtualMachine(reponseVm);
+				request.getSession().setAttribute("listeVm", listeVm);
+				request.setAttribute("listeCours", listeCours);
+
+			} catch (ErrorConnectionVSphere | SQLException e ) {
+
+				request.setAttribute("erreur", e);
+				out="WEB-INF/pagesErreur/ErrorConnection.jsp";
+			} finally {
+				RequestDispatcher dispat = request.getRequestDispatcher(out);
+				dispat.forward(request, response);
+			}
+		}
+	}
+}

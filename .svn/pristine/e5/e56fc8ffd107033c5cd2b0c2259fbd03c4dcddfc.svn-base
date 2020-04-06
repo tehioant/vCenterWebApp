@@ -1,0 +1,40 @@
+package fr.eseo.cc3.dao._interface;
+
+import java.util.ArrayList;
+
+import fr.eseo.cc3.dao.bean.Cour;
+import fr.eseo.cc3.dao.bean.Utilisateur;
+import fr.eseo.cc3.dao.bean.VirtualMachine;
+import fr.eseo.cc3.dao.exception.DAOException;
+
+public interface CourDao {
+
+    void creer( Cour cour ) throws DAOException;
+    
+    void modifier( Cour cour) throws DAOException;
+    
+    void supprimer( Cour cour) throws DAOException;
+    
+    void setReferent( Cour cour, Utilisateur referent ) throws DAOException;
+    
+    void ajoutEtudiant( Cour cour, Utilisateur etudiant ) throws DAOException;
+    
+    void deleteReferent( Cour cour, Utilisateur referent ) throws DAOException;
+    
+    void ajoutVirtualMachine( Cour cour, VirtualMachine vm ) throws DAOException;
+    
+    void supressionEtudiant( Cour cour, Utilisateur etudiant ) throws DAOException;
+    
+    void supressionVirtualMachine( Cour cour, VirtualMachine vm ) throws DAOException;
+
+    Cour trouver( String nomCour, int numServeur ) throws DAOException;
+    
+    ArrayList<Cour> lister(int serveur) throws DAOException;
+    
+    ArrayList<Cour> getCourReferent(Utilisateur referent, int serveur) throws DAOException;
+    
+    ArrayList<Cour> getCourUtilisateur(Utilisateur utilisateur, int serveur) throws DAOException;
+    
+    ArrayList<Cour> getCourUtilisateurNonInscrit(Utilisateur utilisateur, int serveur) throws DAOException;
+
+}

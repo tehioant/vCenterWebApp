@@ -1,0 +1,86 @@
+package fr.eseo.cc3.model;
+
+import java.util.ArrayList;
+
+public class Cluster {
+	
+	private String drs_enabled;
+	private String cluster;
+	private String name;
+	private String ha_enabled;
+	private String ressourcePool;
+	
+	ArrayList<Host> listeHost = new ArrayList<Host>();
+	
+	//Constructeur avec paramétre
+		public Cluster (String pName, String pRessourcePool, ArrayList<Host> plisteHost) {
+
+			this.name = pName;
+			this.ressourcePool = pRessourcePool;
+			this.listeHost=plisteHost;
+		}
+		
+		public Cluster(String pName, String pRessourcePool) {
+			this.name=pName;
+			this.ressourcePool=pRessourcePool;
+		}
+		
+		//Constructeur par default
+		public Cluster() {
+			this.name=null;
+			this.ressourcePool=null;
+		}
+		
+		
+		
+		
+	public String getRessourcePool() {
+		return this.ressourcePool;
+	}
+	
+	public void setRessourcePool(String ressourcePool) {
+		this.ressourcePool=ressourcePool;
+	}
+	
+	public ArrayList<Host> getListeHosts() {
+		return this.listeHost;
+	}
+	
+	public void setListeHosts(ArrayList<Host> listeHost) {
+		this.listeHost = listeHost;
+	}
+	
+	public String getDrs_enabled() {
+		return this.drs_enabled;
+	}
+	
+	public void setDrs_enabled(String drs_enabled) {
+		this.drs_enabled = drs_enabled;
+	}
+	
+	public String getCluster() {
+		return this.cluster;
+	}
+	
+	public void setCluster(String cluster) {
+		this.cluster = cluster;
+	}
+	public String getName() {
+		return this.name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getHa_enabled() {
+		return this.ha_enabled;
+	}
+	
+	public void setHa_enabled(String ha_enabled) {
+		this.ha_enabled = ha_enabled;
+	}
+	
+
+		
+}

@@ -1,0 +1,62 @@
+package fr.eseo.cc3.model.vm;
+
+public class ScsiAdapters {
+
+	
+	
+	
+	public ScsiAdapters() {
+		
+	}
+	
+
+	private int scsi_bus;
+	private int scsi_unit;
+	private String label;
+	private String type;
+	private String sharing;
+	private String key;
+	
+	
+	
+	
+	public int getScsiBus() {
+		return this.scsi_bus;
+	}
+	public void setScsiBus(int bus) {
+		this.scsi_bus = bus;
+	}
+	public int getScsiUnit() {
+		return this.scsi_unit;
+	}
+	public void setScsiUnit(int unit) {
+		this.scsi_unit = unit;
+	}
+	public String getLabel() {
+		return this.label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	public String getType() {
+		return this.type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getSharing() {
+		return this.sharing;
+	}
+	public void setSharing(String sharing) {
+		this.sharing = sharing;
+	}
+	public String getKey() {
+		return this.key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
+	
+	
+
+}

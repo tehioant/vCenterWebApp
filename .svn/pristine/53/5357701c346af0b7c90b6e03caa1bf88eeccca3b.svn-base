@@ -1,0 +1,26 @@
+package fr.eseo.cc3.dao._interface;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import fr.eseo.cc3.dao.bean.Serveur;
+
+
+public interface ServeurDao {
+
+	void creer(Serveur serveur) throws SQLException;
+	
+	void modifierSemi(Serveur serveur) throws SQLException;
+	
+	void modifierFull(Serveur serveur) throws SQLException;
+	
+	void supprimer(Serveur serveur) throws SQLException;
+	
+	Serveur trouverSemi(String nomServeur) throws SQLException;
+	
+	Serveur trouverSemi(int numServeur) throws SQLException;
+	
+	Serveur trouverFull(int numServeur) throws SQLException;
+	
+	ArrayList<Serveur> lister() throws SQLException;
+}

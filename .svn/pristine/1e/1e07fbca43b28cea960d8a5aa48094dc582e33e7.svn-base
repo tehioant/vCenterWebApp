@@ -1,0 +1,28 @@
+package fr.eseo.cc3.model.vm;
+
+public class Memory {
+	int size_MiB;
+	boolean hot_add_enabled;
+	
+	public Memory(int size) {
+		this.size_MiB = size;
+	}
+	
+	public Memory() {
+		this(0);
+	}
+	
+	public int getSize_MiB() {
+		return this.size_MiB;
+	}
+	public void setSize_MiB(int size_MiB) {
+		this.size_MiB = size_MiB;
+	}
+	public boolean getHot_add_enabled() {
+		return this.hot_add_enabled;
+	}
+	public void setHot_add_enabled(boolean b) {
+		this.hot_add_enabled = b;
+	}
+
+}

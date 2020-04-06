@@ -1,0 +1,265 @@
+package fr.eseo.cc3.dao.implementation;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import fr.eseo.cc3.dao.DAOFactory;
+import fr.eseo.cc3.dao._interface.VirtualMachineDao;
+import fr.eseo.cc3.dao.bean.Cour;
+import fr.eseo.cc3.dao.bean.Utilisateur;
+import fr.eseo.cc3.dao.bean.VirtualMachine;
+import fr.eseo.cc3.dao.exception.DAOException;
+import static fr.eseo.cc3.dao.DAOUtilitaire.*;
+
+public class VirtualMachineDaoImpl implements VirtualMachineDao{
+private DAOFactory daoFactory;
+	
+    public VirtualMachineDaoImpl( DAOFactory daoFactory ) {
+        this.daoFactory = daoFactory;
+    }
+    
+    private static final String SQL_SELECT_PAR_REFVM = "SELECT numVm, nomVm, refVm, serveur, dateCreation, dateRendu, derniereConnexion FROM MachineVirtuel WHERE refVm = ? AND serveur = ?";
+    
+    /* Implémentation de la méthode définie dans l'interface UtilisateurDao */
+    @Override
+    public VirtualMachine trouver( String refVM, int serveur ) throws  SQLException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        VirtualMachine vm = null;
+
+        try {
+            /* Récupération d'une connexion depuis la Factory */
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_SELECT_PAR_REFVM, false, refVM, serveur );
+            resultSet = preparedStatement.executeQuery();
+            /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+            if ( resultSet.next() ) {
+                vm = map( resultSet );
+            }
+        } finally {
+            fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+        }
+
+        return vm;
+    }
+
+    private static final String SQL_SELECT_ALL = "SELECT numVm, nomVm, refVm, serveur, dateCreation, dateRendu, derniereConnexion FROM MachineVirtuel WHERE serveur = ?";
+    
+    @Override
+    public ArrayList<VirtualMachine> lister(int serveur) throws SQLException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        ArrayList<VirtualMachine> vm = new ArrayList<VirtualMachine>();
+        
+        try {
+            /* Récupération d'une connexion depuis la Factory */
+        	connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_SELECT_ALL, false, serveur);
+            resultSet = preparedStatement.executeQuery();
+            /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+            while(resultSet.next() ) {
+                vm.add(map( resultSet ));
+            }
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+        }
+        return vm;
+    }
+    
+    private static final String SQL_INSERT_VM = "INSERT INTO MachineVirtuel (nomVm, refVm, serveur, dateCreation, dateRendu, derniereConnexion) VALUES (?, ?, ?, ?, ?, ?)";
+    
+
+    /* Implémentation de la méthode définie dans l'interface UtilisateurDao */
+    @Override
+    public void creer( VirtualMachine vm ) throws SQLException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet valeursAutoGenerees = null;
+
+        try {
+            /* Récupération d'une connexion depuis la Factory */
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_INSERT_VM, true, vm.getNomVm(), vm.getRefVm(), vm.getServeur(), vm.getDateCreation(), vm.getDateRendu(), vm.getDerniereConnexion());
+            int statut = preparedStatement.executeUpdate();
+            /* Analyse du statut retourné par la requête d'insertion */
+            if ( statut == 0 ) {
+                throw new DAOException( "Échec de la création de la vm, aucune ligne ajoutée dans la table." );
+            }
+            /* Récupération de l'id auto-généré par la requête d'insertion */
+            valeursAutoGenerees = preparedStatement.getGeneratedKeys();
+            if ( valeursAutoGenerees.next() ) {
+                /* Puis initialisation de la propriété id du bean Utilisateur avec sa valeur */
+                vm.setNumVm( valeursAutoGenerees.getLong( 1 ) );
+            } else {
+                throw new DAOException( "Échec de la création de la vm en base, aucun ID auto-généré retourné." );
+            }
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            fermeturesSilencieuses( valeursAutoGenerees, preparedStatement, connexion );
+        }
+    }
+    
+    private static final String SQL_DELETE_VM = "DELETE FROM MachineVirtuel WHERE refVm = ? AND serveur=?;";
+
+    /* Implémentation de la méthode définie dans l'interface UtilisateurDao */
+    @Override
+    public void supprimer( String refVm, int serveur ) throws SQLException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            /* Récupération d'une connexion depuis la Factory */
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_DELETE_VM, true, refVm,serveur);
+            resultSet = preparedStatement.executeQuery();
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+        }
+    }
+    
+    private static final String SQL_UPDATE = "UPDATE MachineVirtuel SET numVm = ?, nomVm = ?, refVm = ?, serveur = ?, dateCreation = ?, dateRendu = ?, derniereConnexion = ? WHERE numVm = ?";
+
+    /* Implémentation de la méthode définie dans l'interface UtilisateurDao */
+    @Override
+    public void modifier( VirtualMachine vm ) throws SQLException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet valeursAutoGenerees = null;
+
+        try {
+            /* Récupération d'une connexion depuis la Factory */
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_UPDATE, true, vm.getNumVm(), vm.getRefVm(), vm.getDateCreation(), vm.getDateRendu(), vm.getDerniereConnexion(), vm.getNumVm());
+            int statut = preparedStatement.executeUpdate();
+            /* Analyse du statut retourné par la requête d'insertion */
+            if ( statut == 0 ) {
+                throw new DAOException( "Échec de la mise a jour de la vm, aucune ligne mise a jour dans la table." );
+            }
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            fermeturesSilencieuses( valeursAutoGenerees, preparedStatement, connexion );
+        }
+    }
+    
+    private static final String SQL_RECHERCHE_VM = "SELECT numVm, nomVm, refVm, serveur, dateCreation, dateRendu, derniereConnexion FROM MachineVirtuel WHERE numVm IN (SELECT machineVirtuel FROM Appartient WHERE user = ?) AND serveur = ?";
+    
+    @Override
+    public ArrayList<VirtualMachine> getUserVm(Utilisateur user, int serveur) throws SQLException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        ArrayList<VirtualMachine> vm = new ArrayList<VirtualMachine>();
+        
+        try {
+            /* Récupération d'une connexion depuis la Factory */
+        	connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_RECHERCHE_VM, false, user.getNumUtilisateur(), serveur);
+            resultSet = preparedStatement.executeQuery();
+            /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+            while(resultSet.next() ) {
+                vm.add(map( resultSet ));
+            }
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+        }
+        return vm;
+    }
+    
+    private static final String SQL_RECHERCHE_VM_PAR_COUR = "SELECT numVm, nomVm, refVm, serveur, dateCreation, dateRendu, derniereConnexion FROM MachineVirtuel WHERE numVm IN (SELECT machineVirtuel FROM VmToCour WHERE cours = ?)";
+    
+    @Override
+    public ArrayList<VirtualMachine> getVmCour(Cour cour) throws SQLException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        ArrayList<VirtualMachine> vm = new ArrayList<VirtualMachine>();
+        
+        try {
+            /* Récupération d'une connexion depuis la Factory */
+        	connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_RECHERCHE_VM_PAR_COUR, false, cour.getNumCour());
+            resultSet = preparedStatement.executeQuery();
+            /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+            while(resultSet.next() ) {
+                vm.add(map( resultSet ));
+            }
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+        }
+        return vm;
+    }
+    
+    private static final String SQL_INSERT_UTILISATEUR = "INSERT INTO Appartient (machineVirtuel, user) VALUES (?, ?)";
+    
+    /* Implémentation de la méthode définie dans l'interface UtilisateurDao */
+    @Override
+    public void setUtilisateur( VirtualMachine vm, Utilisateur utilisateur ) throws SQLException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet valeursAutoGenerees = null;
+
+        try {
+            /* Récupération d'une connexion depuis la Factory */
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_INSERT_UTILISATEUR, true, vm.getNumVm(), utilisateur.getNumUtilisateur());
+            int statut = preparedStatement.executeUpdate();
+            /* Analyse du statut retourné par la requête d'insertion */
+            if ( statut == 0 ) {
+                throw new DAOException( "Échec de la créationd e l'appartenance, aucune ligne ajoutée dans la table." );
+            }
+            /* Récupération de l'id auto-généré par la requête d'insertion */
+            valeursAutoGenerees = preparedStatement.getGeneratedKeys();
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            fermeturesSilencieuses( valeursAutoGenerees, preparedStatement, connexion );
+        }
+    }
+    
+    
+    private static final String SQL_DELETE_APPARTENANCE = "DELETE FROM Appartient WHERE machineVirtuel = ? and user = ?;";
+
+    /* Implémentation de la méthode définie dans l'interface UtilisateurDao */
+    @Override
+    public void deleteUtilisateur( VirtualMachine vm, Utilisateur referent ) throws SQLException  {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            /* Récupération d'une connexion depuis la Factory */
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_DELETE_APPARTENANCE, true, vm.getNumVm(), referent.getNumUtilisateur());
+            resultSet = preparedStatement.executeQuery();
+        } finally {
+            fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+        }
+    }
+    
+    
+    /*
+     * Simple méthode utilitaire permettant de faire la correspondance (le
+     * mapping) entre une ligne issue de la table des utilisateurs (un
+     * ResultSet) et un bean Utilisateur.
+     */
+    private static VirtualMachine map( ResultSet resultSet ) throws SQLException {
+        VirtualMachine vm = new VirtualMachine(resultSet.getLong("numVM"), resultSet.getString("nomVm"), resultSet.getString("refVm"), resultSet.getInt("serveur"), resultSet.getString("dateCreation"), resultSet.getString("dateRendu"), resultSet.getString("derniereConnexion"));
+        return vm;
+    }
+}

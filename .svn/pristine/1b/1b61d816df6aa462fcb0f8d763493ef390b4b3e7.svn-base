@@ -1,0 +1,111 @@
+package fr.eseo.cc3.model;
+
+import java.util.ArrayList;
+
+public class Host {
+
+	private static final String DEFAULT_NAME = "Inconnu";
+	private static final String DEFAULT_CONNECTION_STATE = "Inconnu";
+	private static final String DEFAULT_POWER_STATE = "Inconnu";
+	private static final String DEFAULT_HOST="Inconnu";
+	private static final ArrayList<VirtualMachine> DEFAULT_LIST_VM= new ArrayList<VirtualMachine>();
+
+
+	private String name;
+	private String connectionState;
+	private String powerState;
+	private String host;
+	ArrayList<VirtualMachine> listeVm = new ArrayList<VirtualMachine>();
+
+
+
+	//Constructeur avec paramétre
+	public Host (String pHost, String pName, String pConnectionState, String pPowerState) {
+		this.host = pHost;
+		this.name = pName;
+		this.connectionState = pConnectionState;
+		this.powerState = pPowerState;
+	}
+
+
+	//Constructeur par default
+	public Host() {
+		this(null, null, null, null);
+	}
+
+
+	public String getName() {
+		return this.name;
+	}
+
+
+	public String getConnectionState() {
+		return this.connectionState;
+	}
+
+
+	public String getPowerState() {
+		return this.powerState;
+	}
+
+
+	public String getHost() {
+		return this.host;
+	}
+
+
+	public ArrayList<VirtualMachine> getListeVm() {
+		return this.listeVm;
+	}
+
+
+	public void setName(String name) {
+		this.name = name==null?DEFAULT_NAME:name;
+	}
+
+
+	public void setConnectionState(String connectionState) {
+		switch(connectionState){
+		case("CONNECTED") :
+			this.connectionState = "Connecté";
+			break;
+		case("DISCONNECTED") :
+			this.connectionState="Déconnecté";
+			break;
+		case("NOT_RESPONDING") :
+			this.connectionState = "Ne répond pas";
+			break;
+		default :
+			this.connectionState =DEFAULT_POWER_STATE;
+		}
+	}
+
+
+	public void setPowerState(String powerState) {
+		switch(powerState){
+		case("POWERED_OFF") :
+			this.powerState = "Hors tension";
+			break;
+		case("POWERED_ON") :
+			this.powerState="Sous tension";
+			break;
+		case("SUSPENDED") :
+			this.powerState = "Interrompu";
+			break;
+		default :
+			this.powerState =DEFAULT_POWER_STATE;
+		}
+	}
+
+
+	public void setHost(String host) {
+		this.host = host==null?DEFAULT_HOST:host;
+	}
+
+
+	public void setListeVm(ArrayList<VirtualMachine> listeVm) {
+		this.listeVm = listeVm==null?DEFAULT_LIST_VM:listeVm;
+	}
+
+
+}

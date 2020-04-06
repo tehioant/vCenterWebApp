@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Administrateur/Composants/actionAdmin.css" />
+
+<%String vmId=request.getParameter("vmId");
+	String vmName=request.getParameter("vmName"); 
+%>
+
+
+<div class="dropdown" id="drop">
+	<button class="btn btn-default dropdown-toggle" type="button"id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"aria-expanded="true">
+		Actions <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+		<li><a href="ChangementEtatVm?vmId=<%=vmId%>&etat=1">Allumer</a></li>
+		<li><a href="ChangementEtatVm?vmId=<%=vmId%>&etat=0">Eteindre</a></li>
+		<li class="disabled">
+			<a href="ConnectNetworkVm?vmId=<%=vmId%>">Connexion à un réseau</a>
+		</li>
+		<li><a  href="CreateSnapshotinter?vmName=<%=vmName%>" id="createsnapbtn" >Créer un snapshot</a>			
+		</li>
+		<li><a href="RevertSnapshot?vmName=<%=vmName%>">RevertSnapshot</a></li>
+		<li><a href="ModificationVM?vmId=<%=vmId%>">Modifier la VM</a></li>
+		<li><a href="ClonerVM?vmName=<%=vmName%>">Cloner la VM</a></li>
+		<li><a href="ExportOVFinter?vmId=<%=vmId%>&vmName=<%=vmName%>">Exporter au format OVF</a></li>
+		<li><a href="SupprimerVm?vmId=<%=vmId%>" onclick="return confirm('Etes-vous sûr ?');">Supprimer</a></li>
+	</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

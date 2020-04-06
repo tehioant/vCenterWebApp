@@ -1,0 +1,108 @@
+package fr.eseo.cc3.dao.bean;
+
+import java.io.Serializable;
+
+public class Iso implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4939105106453624290L;
+	
+	private int keyIso ;
+	private String nomIso;
+	private String chemin;
+	private int numServeur;
+	private String os;
+	
+	
+	public Iso(int keyIso, String nomIso, String chemin, int numServeur, String os) {
+		super();
+		this.keyIso = keyIso;
+		this.nomIso = nomIso;
+		this.chemin = chemin;
+		this.numServeur = numServeur;
+		this.os=os;
+	}
+	
+	
+	/**
+	 * @return the keyIso
+	 */
+	public int getKeyIso() {
+		return keyIso;
+	}
+
+
+	/**
+	 * @param keyIso the keyIso to set
+	 */
+	public void setKeyIso(int keyIso) {
+		this.keyIso = keyIso;
+	}
+
+
+	/**
+	 * @return the nomIso
+	 */
+	public String getNomIso() {
+		return nomIso;
+	}
+	/**
+	 * @param nomIso the nomIso to set
+	 */
+	public void setNomIso(String nomIso) {
+		this.nomIso = nomIso;
+	}
+	/**
+	 * @return the chemin
+	 */
+	public String getChemin() {
+		return chemin;
+	}
+	/**
+	 * @param chemin the chemin to set
+	 */
+	public void setChemin(String chemin) {
+		this.chemin = chemin;
+	}
+	/**
+	 * @return the numServeur
+	 */
+	public int getNumServeur() {
+		return numServeur;
+	}
+	/**
+	 * @param numServeur the numServeur to set
+	 */
+	public void setNumServeur(int numServeur) {
+		this.numServeur = numServeur;
+	}
+
+
+	/**
+	 * @return the os
+	 */
+	public String getOs() {
+		return os;
+	}
+
+
+	/**
+	 * @param os the os to set
+	 */
+	public void setOs(String os) {
+		this.os = os;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Iso [keyIso=" + keyIso + ", nomIso=" + nomIso + ", chemin=" + chemin + ", numServeur=" + numServeur
+				+ ", os=" + os + "]";
+	}
+
+
+
+
+}

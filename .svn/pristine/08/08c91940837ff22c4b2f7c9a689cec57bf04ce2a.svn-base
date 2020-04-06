@@ -1,0 +1,73 @@
+package fr.eseo.cc3.model.vm;
+
+
+
+
+/**
+ * 
+ * @author CC groupe 3
+ *
+ * La classe { @link fr.eseo.cc3.model.vm.Memory } est un attribut de la classe { @link fr.eseo.cc3.model.vm.VirtualMachine }.
+ *
+ */
+public class Memory {
+	int size_MiB;
+	boolean hot_add_enabled;
+	
+	
+	/**
+	 * Constructeur de la classe { @link fr.eseo.cc3.model.vm.Memory }.
+	 * 
+	 * @param size [type: int]
+	 * */
+	public Memory(int size) {
+		this.size_MiB = size;
+	}
+	
+	
+	/**
+	 * Constructeur par defaut de la classe { @link fr.eseo.cc3.model.vm.Memory }.
+	 * Le constructeur ne requiert aucun parametre
+	 * 
+	 * */
+	public Memory() {
+		this(0);
+	}
+	
+	
+	 /**
+		 * Accesseur getSize_MiB() recupere le size_MiB du { @link fr.eseo.cc3.model.vm.Memory }.
+		 * 
+		 * @return [type: String] size_MiB du { @link fr.eseo.cc3.model.vm.Memory }.
+		 * */
+	public int getSize_MiB() {
+		return this.size_MiB;
+	}
+	 /**
+		 * Accesseur setSize_MiB() definis le size_MiB du { @link fr.eseo.cc3.model.vm.Memory }.
+		 * 
+		 * @param [type: String] size_MiB du { @link fr.eseo.cc3.model.vm.Memory }.
+		 * */
+	public void setSize_MiB(int size_MiB) {
+		this.size_MiB = size_MiB;
+	}
+	
+	
+	 /**
+		 * Accesseur getHot_add_enabled() recupere le hot_add_enabled du { @link fr.eseo.cc3.model.vm.Memory }.
+		 * 
+		 * @return [type: String] hot_add_enabled du { @link fr.eseo.cc3.model.vm.Memory }.
+		 * */
+	public boolean getHot_add_enabled() {
+		return this.hot_add_enabled;
+	}
+	 /**
+		 * Accesseur setHot_add_enabled() definis le hot_add_enabled du { @link fr.eseo.cc3.model.vm.Memory }.
+		 * 
+		 * @param [type: String] hot_add_enabled du { @link fr.eseo.cc3.model.vm.Memory }.
+		 * */
+	public void setHot_add_enabled(boolean b) {
+		this.hot_add_enabled = b;
+	}
+
+}

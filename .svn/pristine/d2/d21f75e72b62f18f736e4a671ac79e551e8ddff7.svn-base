@@ -1,0 +1,109 @@
+package fr.eseo.cc3.model.vm;
+
+public class SataAdapters {
+	
+
+	
+	private int bus;
+	private int unit;
+	private String label;
+	private String type;
+	private String key; 
+	private String pciSlot;
+	private String sharing;
+	
+	// Constructeur
+	public SataAdapters() {
+		
+	}
+	
+	
+	
+	// Accesseurs
+	
+	// Bus
+	public int getBus() {
+		return this.bus;
+	}
+	public void setBus(int bus) {
+		this.bus = bus;
+	}
+	
+	// Label
+	public String getLabel() {
+		return this.label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	
+	// Type
+	public String getType() {
+		return this.type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	// Key
+	public String getKey() {
+		return this.key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+
+
+	/**
+	 * @return the unit
+	 */
+	public int getUnit() {
+		return unit;
+	}
+
+
+
+	/**
+	 * @param unit the unit to set
+	 */
+	public void setUnit(int unit) {
+		this.unit = unit;
+	}
+
+
+
+	/**
+	 * @return the pciSlot
+	 */
+	public String getPciSlot() {
+		return pciSlot;
+	}
+
+
+
+	/**
+	 * @param pciSlot the pciSlot to set
+	 */
+	public void setPciSlot(String pciSlot) {
+		this.pciSlot = pciSlot;
+	}
+
+
+
+	/**
+	 * @return the sharing
+	 */
+	public String getSharing() {
+		return sharing;
+	}
+
+
+
+	/**
+	 * @param sharing the sharing to set
+	 */
+	public void setSharing(String sharing) {
+		this.sharing = sharing;
+	}
+}

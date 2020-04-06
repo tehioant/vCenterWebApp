@@ -1,0 +1,42 @@
+package fr.eseo.cc3.model.vm;
+
+public class Cpu {
+	private boolean hot_remove_enabled;
+	private boolean hot_add_enabled;
+	private int count;
+	private int cores_per_socket;
+	
+	public Cpu(int count) {
+		this.count = count;
+	}
+	
+	public Cpu() {
+		this(0);
+	}
+	
+	
+	public boolean getHot_remove_enabled() {
+		return this.hot_remove_enabled;
+	}
+	public void setHot_remove_enabled(boolean hot_remove_enabled) {
+		this.hot_remove_enabled = hot_remove_enabled;
+	}
+	public boolean getHot_add_enabled() {
+		return this.hot_add_enabled;
+	}
+	public void setHot_add_enabled(boolean b) {
+		this.hot_add_enabled = b;
+	}
+	public int getCount() {
+		return this.count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public int getCores_per_socket() {
+		return this.cores_per_socket;
+	}
+	public void setCores_per_socket(int cores_per_socket) {
+		this.cores_per_socket = cores_per_socket;
+	}
+}

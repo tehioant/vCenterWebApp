@@ -1,0 +1,89 @@
+
+package fr.eseo.cc3.model.vm;
+
+/**
+ * 
+ * @author CC groupe 3
+ *
+ *
+ * La classe {@link fr.eseo.cc3.model.vm.Hardware.java} est un attribut de la classe {@link fr.eseo.cc3.model.vm.VirtualMachine.java}.
+ * 
+ *
+ *
+ *
+ */
+
+public class Hardware {
+
+    private String upgradePolicy;
+    private String upgradeStatus;
+    private String version;
+    
+    
+    /**
+	 * Constructeur de la classe {@link fr.eseo.cc3.model.vm.Hardware.java}.
+	 * Le constructeur ne requiert aucun parametre
+	 * 
+	 * */
+    public Hardware() {
+    	
+    }
+    
+    
+    //Accesseurs
+    /**
+	 * Accesseur getUpgradePolicy() recupere le upgradePolicy du {@link fr.eseo.cc3.model.vm.Hardware.java}.
+	 * 
+	 * @return [type: String] upgradePolicy du {@link fr.eseo.cc3.model.vm.Hardware.java}.
+	 * */
+    public String getUpgradePolicy() {
+        return this.upgradePolicy;
+    }
+    /**
+	 * Accesseur setUpgradePolicy() definis le upgradePolicy du {@link fr.eseo.cc3.model.vm.Hardware.java}.
+	 * 
+	 * @param [type: String] upgradePolicy du {@link fr.eseo.cc3.model.vm.Hardware.java}.
+	 * */
+    public void setUpgradePolicy(String upgradePolicy) {
+        this.upgradePolicy = upgradePolicy;
+    }
+
+    
+    
+    /**
+	 * Accesseur getUpgradeStatus() recupere le upgradeStatus du {@link fr.eseo.cc3.model.vm.Hardware.java}.
+	 * 
+	 * @return [type: String] upgradeStatus du {@link fr.eseo.cc3.model.vm.Hardware.java}.
+	 * */
+    public String getUpgradeStatus() {
+        return this.upgradeStatus;
+    }
+    /**
+	 * Accesseur setUpgradeStatus() definis le upgradeStatus du {@link fr.eseo.cc3.model.vm.Hardware.java}.
+	 * 
+	 * @param [type: String] upgradeStatus du {@link fr.eseo.cc3.model.vm.Hardware.java}.
+	 * */
+    public void setUpgradeStatus(String upgradeStatus) {
+        this.upgradeStatus = upgradeStatus;
+    }
+
+    
+    
+    /**
+	 * Accesseur getVersion() recupere la version du {@link fr.eseo.cc3.model.vm.Hardware.java}.
+	 * 
+	 * @return [type: String] version du {@link fr.eseo.cc3.model.vm.Hardware.java}.
+	 * */
+    public String getVersion() {
+        return this.version;
+    }
+    /**
+	 * Accesseur setVersion() definis la version du {@link fr.eseo.cc3.model.vm.Hardware.java}.
+	 * 
+	 * @param [type: String] version du {@link fr.eseo.cc3.model.vm.Hardware.java}.
+	 * */
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+}

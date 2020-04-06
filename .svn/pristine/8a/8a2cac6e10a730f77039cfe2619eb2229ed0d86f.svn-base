@@ -1,0 +1,43 @@
+
+package fr.eseo.cc3.model.vm;
+
+
+public class Hardware {
+
+    private String upgradePolicy;
+    private String upgradeStatus;
+    private String version;
+    
+    
+    public Hardware() {
+    	
+    }
+    
+    
+    //Accesseurs
+    
+    public String getUpgradePolicy() {
+        return this.upgradePolicy;
+    }
+
+    public void setUpgradePolicy(String upgradePolicy) {
+        this.upgradePolicy = upgradePolicy;
+    }
+
+    public String getUpgradeStatus() {
+        return this.upgradeStatus;
+    }
+
+    public void setUpgradeStatus(String upgradeStatus) {
+        this.upgradeStatus = upgradeStatus;
+    }
+
+    public String getVersion() {
+        return this.version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+}

@@ -1,0 +1,170 @@
+package fr.eseo.cc3.model.vm;
+
+
+
+/**
+ * 
+ * @author CC groupe 3
+ *
+ *
+ * La classe { @link fr.eseo.cc3.model.vm.SataAdapters } est un attribut de la classe { @link fr.eseo.cc3.model.vm.VirtualMachine }.
+ * 
+ */
+public class SataAdapters {
+	
+
+	
+	private int bus;
+	private int unit;
+	private String label;
+	private String type;
+	private String key; 
+	private String pciSlot;
+	private String sharing;
+	
+	// Constructeur
+	/**
+	 * Constructeur de la classe { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * Le constructeur ne requiert aucun parametre
+	 * 
+	 * */
+	public SataAdapters() {
+		
+	}
+	
+	
+	
+	// Accesseurs
+	
+	// Bus
+	/**
+	 * Accesseur getBus() recupere le bus du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * 
+	 * @return [type: int] bus du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * */
+	public int getBus() {
+		return this.bus;
+	}
+	/**
+	 * Accesseur setBus() definis le bus du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * 
+	 * @param [type: int] bus du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * */
+	public void setBus(int bus) {
+		this.bus = bus;
+	}
+	
+	// Label
+	/**
+	 * Accesseur getLabel() recupere le label du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * 
+	 * @return [type: String] label du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * */
+	public String getLabel() {
+		return this.label;
+	}
+	/**
+	 * Accesseur setLabel() definis le label du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * 
+	 * @param [type: String] label du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * */
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	
+	// Type
+	/**
+	 * Accesseur getType() recupere le type du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * 
+	 * @return [type: String] type du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * */
+	public String getType() {
+		return this.type;
+	}
+	/**
+	 * Accesseur setType() definis le type du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * 
+	 * @param [type: String] type du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * */
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	// Key
+	/**
+	 * Accesseur setKey() definis le key du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * 
+	 * @param [type: String] key du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * */
+	public String getKey() {
+		return this.key;
+	}
+	/**
+	 * Accesseur setKey() definis le key du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * 
+	 * @param [type: String] key du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * */
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+
+
+	/**
+	 * Accesseur getUnit() recupere le unit du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * 
+	 * @return [type: int] unit du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * */
+	public int getUnit() {
+		return unit;
+	}
+
+	/**
+	 * Accesseur setUnit() definis le unit du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * 
+	 * @param [type: int] unit du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * */
+	public void setUnit(int unit) {
+		this.unit = unit;
+	}
+
+
+
+	/**
+	 * Accesseur getPciSlot() recupere le pciSlot du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * 
+	 * @return [type: String] pciSlot du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * */
+	public String getPciSlot() {
+		return pciSlot;
+	}
+
+	/**
+	 * Accesseur setPciSlot() definis le pciSlot du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * 
+	 * @param [type: String] pciSlot du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * */
+	public void setPciSlot(String pciSlot) {
+		this.pciSlot = pciSlot;
+	}
+
+
+
+	/**
+	 * Accesseur getSharing() recupere le sharing du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * 
+	 * @return [type: String] sharing du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * */
+	public String getSharing() {
+		return sharing;
+	}
+
+	/**
+	 * Accesseur setSharing() definis le sharing du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * 
+	 * @param [type: String] sharing du { @link fr.eseo.cc3.model.vm.SataAdapters }.
+	 * */
+	public void setSharing(String sharing) {
+		this.sharing = sharing;
+	}
+}

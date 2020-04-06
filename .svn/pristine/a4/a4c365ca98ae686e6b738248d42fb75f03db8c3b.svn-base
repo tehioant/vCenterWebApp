@@ -1,0 +1,158 @@
+package fr.eseo.cc3.model.vm;
+
+
+
+
+/**
+ * 
+ * @author CC groupe 3
+ *
+ *
+ * La classe { @link fr.eseo.cc3.model.vm.Floppies } est un attribut de la classe { @link fr.eseo.cc3.model.vm.VirtualMachine }.
+ * 
+ *
+ *
+ *
+ */
+
+
+
+public class Floppies {
+	
+	
+	
+	
+	private boolean start_connected;
+	private String backing_type;
+	private boolean allow_guest_control;
+	private String label;
+	private String state;
+	private String key;
+	
+	
+	
+	
+
+	// Constructeur
+	/**
+	 * Constructeur de la classe { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * Le constructeur ne requiert aucun parametre
+	 * 
+	 * */
+	public Floppies() {
+		
+	}
+	
+	
+	// Accesseurs
+	/**
+	 * Accesseur getStart_connected() recupere le start_connected du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * 
+	 * @return [type: boolean] start_connected du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * */
+	public boolean getStart_connected() {
+		return this.start_connected;
+	}
+	/**
+	 * Accesseur getStart_connected() definis le start_connected du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * 
+	 * @param [type: boolean] start_connected du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * */
+	public void setStart_connected(boolean b) {
+		this.start_connected = b;
+	}
+
+
+
+	/**
+	 * Accesseur getBackingType() definis le backing_type du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * 
+	 * @return [type: String] backing_type du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * */
+	public String getBackingType() {
+		return this.backing_type;
+	}
+	/**
+	 * Accesseur getBackingType() definis le backing_type du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * 
+	 * @param [type: String] backing_type du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * */
+	public void setBackingType(String type) {
+		this.backing_type = type;
+	}
+
+
+
+	/**
+	 * Accesseur getAllow_guest_control() recupere le allow_guest_control du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * 
+	 * @return [type: boolean] allow_guest_control du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * */
+	public boolean getAllow_guest_control() {
+		return this.allow_guest_control;
+	}
+	/**
+	 * Accesseur getAllow_guest_control() definis le allow_guest_control du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * 
+	 * @param [type: boolean] allow_guest_control du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * */
+	public void setAllow_guest_control(boolean b) {
+		this.allow_guest_control = b;
+	}
+
+	
+	
+	/**
+	 * Accesseur getLabel() recupere le label du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * 
+	 * @return [type: String] label du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * */
+	public String getLabel() {
+		return this.label;
+	}
+	/**
+	 * Accesseur getLabel() definis le label du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * 
+	 * @param [type: String] label du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * */
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+
+
+	/**
+	 * Accesseur getState() recupere l'etat du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * 
+	 * @return [type: String] state du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * */
+	public String getState() {
+		return this.state;
+	}
+	/**
+	 * Accesseur getState() definis l'etat du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * 
+	 * @param [type: String] state du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * */
+	public void setState(String state) {
+		this.state = state;
+	}
+	
+	
+	/**
+	 * Accesseur getKey() recupere la key du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * 
+	 * @return [type: String] key du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * */
+	public String getKey() {
+		return this.key;
+	}
+	/**
+	 * Accesseur getKey() definis la key du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * 
+	 * @param [type: String] key du { @link fr.eseo.cc3.model.vm.Floppies }.
+	 * */
+	public void setKey(String key) {
+		this.key = key;
+	}
+}

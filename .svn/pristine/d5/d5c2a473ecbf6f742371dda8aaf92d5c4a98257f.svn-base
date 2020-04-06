@@ -1,0 +1,319 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
+<!--  IMPORT des ressources  -->
+<%@page import="java.util.ArrayList"%>
+<%@page import="fr.eseo.cc3.model.*"%>
+<%@page import="fr.eseo.cc3.model.vm.*"%>
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.text.NumberFormat"%>
+<%@page import="fr.eseo.cc3.dao.bean.Utilisateur"%>
+<%@ page import="java.util.*, java.util.Date"%>
+
+<!--  Redirection en cas d'erreur  -->
+<%@ page errorPage="../pagesErreur/ErrorCompilation.jsp"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<%@include file="../Commun/head.html"%>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/Administrateur/virtualmachine.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}css/Administrateur/Composants/sideBarAdmin.css" />
+
+
+<title>VM</title>
+</head>
+
+<body>
+
+
+	<%
+		VirtualMachine virtualmachine = (VirtualMachine) request.getAttribute("virtualMachine");
+	%>
+
+	<jsp:include page="../Commun/navBar.jsp">
+			<jsp:param name="servletOut" value="AccueilAdmin" />
+		</jsp:include>
+
+	<div id="wrapper">
+		<div class="overlay"></div>
+
+		
+		<%@include file="Composants/sideBarAdmin.jsp"%>
+
+
+
+		<section>
+			<div class="container">
+
+				<ul class="nav nav-tabs">
+					<li><a
+						href="javascript:ChangeOnglet('tab_vmdetails', 'vmdetails');"
+						id="tab_vmdetails">VM details</a></li>
+				</ul>
+
+			</div>
+
+		</section>
+
+
+		<div id="vmdetails" class="content" style="display: block">
+			<!-- VirtualMachine details  -->
+			<div class="container">
+				<div class="VMdetails">
+
+					<jsp:include page="../Commun/boutonConsole.jsp">
+						<jsp:param name="vmName" value="<%=virtualmachine.getName()%>" />
+					</jsp:include>
+
+
+
+					<div id="Titre">
+						<h4>
+							Nom :
+							<%=virtualmachine.getName()%>
+						</h4>
+						<h4>
+							VM :
+							<%=request.getAttribute("name")%>
+						</h4>
+
+					</div>
+
+					<div class="wrapper" id="wrapperVM">
+						<div class="one">
+							<div class="card z-depth-3">
+								<div class="card-body">
+									<h4 class="card-title">CDroms</h4>
+									<p class="card-text" style="font-size: 12px;">
+										start_connected :
+										<%=virtualmachine.getCdroms().getStart_connected().toString()%>
+										<br> Backing :: device_access_type :
+										<%=virtualmachine.getCdroms().getBacking_device_access_type()%>
+										type :
+										<%=virtualmachine.getCdroms().getBacking_type()%>
+										<br> allow_guest_control :
+										<%=virtualmachine.getCdroms().getAllow_guest_control()%>
+										<br> label :
+										<%=virtualmachine.getCdroms().getLabel()%>
+										<br> state :
+										<%=virtualmachine.getCdroms().getState()%>
+										<br> type :
+										<%=virtualmachine.getCdroms().getType()%>
+										<br> sata :: bus :
+										<%=virtualmachine.getCdroms().getSata_bus()%>
+										unit :
+										<%=virtualmachine.getCdroms().getSata_unit()%>
+										<br> key :
+										<%=virtualmachine.getCdroms().getKey()%>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="two">
+							<div class="card z-depth-3">
+								<div class="card-body">
+									<h4 class="card-title">Memory</h4>
+									<p class="card-text" style="font-size: 12px;">
+										size_MiB :
+										<%=virtualmachine.getMemorySizeMIB().getSize_MiB()%>
+										<br> hot_add_enabled :
+										<%=virtualmachine.getMemorySizeMIB().getHot_add_enabled()%>
+									</p>
+
+								</div>
+							</div>
+
+						</div>
+
+						<br>
+
+						<div class="three">
+							<div class="card z-depth-3">
+								<div class="card-body">
+									<h4 class="card-title">Disk</h4>
+									<p class="card-text" style="font-size: 12px;">
+										scsi :: bus :
+										<%=virtualmachine.getDisk().getScsi_bus()%>
+										unit :
+										<%=virtualmachine.getDisk().getScsi_unit()%>
+										<br> backing :: vmdk_file :
+										<%=virtualmachine.getDisk().getBacking_vmdk_file()%>
+										type :
+										<%=virtualmachine.getDisk().getBacking_type()%>
+										<br> label :
+										<%=virtualmachine.getDisk().getLabel()%>
+										<br> type :
+										<%=virtualmachine.getDisk().getType()%>
+										<br> capacity :
+										<%=virtualmachine.getDisk().getCapacity()%>
+									</p>
+
+								</div>
+							</div>
+						</div>
+						<br>
+
+						<div class="four">
+							<div class="card z-depth-3">
+								<div class="card-body">
+									<h4 class="card-title">Sata Adapters</h4>
+									<p class="card-text" style="font-size: 12px;">
+										scsi :: bus :
+										<%=virtualmachine.getSata().getBus()%>
+										bus :
+										<%=virtualmachine.getSata().getUnit()%>
+										<br> pci_slot_number :
+										<%=virtualmachine.getSata().getPciSlot()%>
+										<br> label :
+										<%=virtualmachine.getSata().getLabel()%>
+										<br> type :
+										<%=virtualmachine.getSata().getType()%>
+										<br> sharing :
+										<%=virtualmachine.getSata().getSharing()%>
+										<br> key :
+										<%=virtualmachine.getSata().getKey()%>
+									</p>
+
+								</div>
+							</div>
+						</div>
+						<br>
+
+						<div class="five">
+							<div class="card z-depth-3">
+								<div class="card-body">
+									<h4 class="card-title">PowerState</h4>
+									<p class="card-text" style="font-size: 12px;">
+									<h6>
+										:
+										<%=virtualmachine.getPowerState()%>
+									</h6>
+									</p>
+
+								</div>
+							</div>
+						</div>
+						<br>
+
+						<div class="six">
+							<div class="card z-depth-3">
+								<div class="card-body">
+									<h4 class="card-title">Nics</h4>
+									<p class="card-text" style="font-size: 12px;">
+										start_connected :
+										<%=virtualmachine.getNics().getStart_connected()%>
+										<br> pci_slot_number :
+										<%=virtualmachine.getNics().getPciSlot()%>
+										<br> Backing :: network_name :
+										<%=virtualmachine.getNics().getBacking_network_name()%>
+										network :
+										<%=virtualmachine.getNics().getBacking_network()%>
+										type :
+										<%=virtualmachine.getNics().getBacking_type()%>
+										<br> mac_address :
+										<%=virtualmachine.getNics().getMac_address()%>
+										<br> mac_type :
+										<%=virtualmachine.getNics().getMac_type()%>
+										<br> allow_guest_control :
+										<%=virtualmachine.getNics().getState()%>
+										<br> wake_on_lan_enabled :
+										<%=virtualmachine.getNics()%>
+										<br> label :: bus :
+										<%=virtualmachine.getNics().getLabel()%>
+										<br> state :
+										<%=virtualmachine.getNics().getState()%>
+										<br> type :
+										<%=virtualmachine.getNics().getType()%>
+										<br> key :
+										<%=virtualmachine.getNics().getKey()%>
+									</p>
+
+								</div>
+							</div>
+						</div>
+						<br>
+
+						<div class="seven">
+							<div class="card z-depth-3">
+								<div class="card-body">
+									<h4 class="card-title">Boot</h4>
+									<p class="card-text" style="font-size: 12px;">
+										delay :
+										<%=virtualmachine.getBoot().getDelay()%>
+										<br> retry_delay :
+										<%=virtualmachine.getBoot().getRetryDelay()%>
+										<br> enter_setup_mode :
+										<%=virtualmachine.getBoot().getEnterSetupMode()%>
+										<br> type :
+										<%=virtualmachine.getBoot().getType()%>
+										<br> retry :
+										<%=virtualmachine.getBoot().getRetry()%>
+									</p>
+
+								</div>
+							</div>
+						</div>
+						<br>
+
+						<div class="eight">
+							<div class="card z-depth-3">
+								<div class="card-body">
+									<h4 class="card-title">guestOS</h4>
+									<p class="card-text" style="font-size: 12px;">
+										<%=virtualmachine.getGuestOS()%>
+									</p>
+
+								</div>
+							</div>
+						</div>
+
+						<br>
+
+						<div class="nine">
+							<div class="card z-depth-3">
+								<div class="card-body">
+									<h4 class="card-title">Hardware</h4>
+									<p class="card-text" style="font-size: 12px;">
+										upgrade_policy :
+										<%=virtualmachine.getHardware().getUpgradePolicy()%>
+										<br> upgrade_status :
+										<%=virtualmachine.getHardware().getUpgradeStatus()%>
+										<br> version :
+										<%=virtualmachine.getHardware().getVersion()%>
+									</p>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		/*Script changement d'onglets*/
+
+		function ChangeOnglet(onglet, contenu) {
+
+			document.getElementById('vmdetails').style.display = 'none';
+
+			document.getElementById(contenu).style.display = 'block';
+
+			document.getElementById('tab_vmdetails').className = '';
+
+		}
+	</script>
+
+
+
+</body>
+</html>
+
+
+

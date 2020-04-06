@@ -1,0 +1,65 @@
+package fr.eseo.cc3.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import fr.eseo.cc3.dao.DAOFactory;
+import fr.eseo.cc3.dao._interface.CourDao;
+import fr.eseo.cc3.dao._interface.UtilisateurDao;
+import fr.eseo.cc3.dao.bean.Cour;
+import fr.eseo.cc3.dao.bean.Utilisateur;
+import fr.eseo.cc3.dao.exception.DAOException;
+
+/**
+ * Servlet implementation class ServletCreationCours
+ */
+@WebServlet(name = "CreationCours", urlPatterns = { "/CreationCours" })
+public class ServletCreationCours extends ServletCommon {
+	private static final long serialVersionUID = 1L;
+
+	private static CourDao coursDaoImpl;
+	private static UtilisateurDao utilisateirDao; 
+
+	public void init() throws ServletException {
+
+		DAOFactory dao = ((DAOFactory) getServletContext().getAttribute( "daofactory" ) );
+		coursDaoImpl = dao.getCourDao();
+		utilisateirDao = dao.getUtilisateurDao();
+	}
+
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
+		String out=this.checkRole("ListeCours", PAGE_ERREUR_DROITS, PAGE_ERREUR_DROITS, utilisateur);
+
+		if(out.equals(PAGE_ERREUR_DROITS)) {
+			this.getServletContext().getRequestDispatcher(out).forward( request, response );
+		}else {
+
+				try {
+						Cour cours = new Cour(request.getParameter("nom"), 0, 0, 1);
+						Utilisateur referent = utilisateirDao.trouver(request.getParameter("nomUtilisateurReferent"));
+						coursDaoImpl.creer(cours);
+						coursDaoImpl.setReferent(cours,referent);
+
+
+				} catch (DAOException e) {
+					request.setAttribute("erreur", e);
+					out="WEB-INF/pagesErreur/ErrorConnection.jsp";
+				}finally {
+					response.sendRedirect(out);
+				}
+		}
+	}
+
+}

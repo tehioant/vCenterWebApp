@@ -1,0 +1,92 @@
+package fr.eseo.cc3.dao.bean;
+
+import java.io.Serializable;
+
+public class Cour implements Serializable{
+	
+	private static final long serialVersionUID = -1046718478769756641L;
+	private long numCour;
+	private String nomCour;
+	private int nbEtudiant;
+	private int nbVm;
+	private int serveur;
+	
+	private boolean inscrit;
+	
+	public Cour(long numCour, String nomCour, int nbEtudiant, int nbVm, int serveur) {
+		super();
+		this.numCour = numCour;
+		this.nomCour = nomCour;
+		this.nbEtudiant = nbEtudiant;
+		this.nbVm = nbVm;
+		this.serveur = serveur;
+	}
+
+	public Cour(String nomCour, int nbEtudiant, int nbVm, int serveur) {
+		this(Long.valueOf(0), nomCour, nbEtudiant, nbVm, serveur);
+	}
+	
+	public Cour(String nomCour, int serveur) {
+		this(Long.valueOf(0), nomCour, 0, 0, serveur);
+	}
+	
+	public Cour() {
+		this(Long.valueOf(0), "", 0, 0, 0);
+	}
+
+	public long getNumCour() {
+		return numCour;
+	}
+
+	public void setNumCour(long numCour) {
+		this.numCour = numCour;
+	}
+
+	public String getNomCour() {
+		return nomCour;
+	}
+
+	public void setNomCour(String nomCour) {
+		this.nomCour = nomCour;
+	}
+
+	public int getNbEtudiant() {
+		return nbEtudiant;
+	}
+
+	public void setNbEtudiant(int nbEtudiant) {
+		this.nbEtudiant = nbEtudiant;
+	}
+
+	public int getNbVm() {
+		return nbVm;
+	}
+
+	public void setNbVm(int nbVm) {
+		this.nbVm = nbVm;
+	}
+
+	public int getServeur() {
+		return serveur;
+	}
+
+	public void setServeur(int serveur) {
+		this.serveur = serveur;
+	}
+
+	public boolean isInscrit() {
+		return inscrit;
+	}
+
+	public void setInscrit(boolean inscrit) {
+		this.inscrit = inscrit;
+	}
+
+	@Override
+	public String toString() {
+		return "Cour [numCour=" + numCour + ", nomCour=" + nomCour + ", nbEtudiant=" + nbEtudiant + ", nbVm=" + nbVm
+				+ ", serveur=" + serveur + "]";
+	}
+	
+
+}

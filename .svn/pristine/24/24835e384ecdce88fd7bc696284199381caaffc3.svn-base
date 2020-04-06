@@ -1,0 +1,57 @@
+
+package fr.eseo.cc3.model.vm;
+
+
+public class Boot {
+
+    private Integer delay;
+    private Integer retryDelay;
+    private boolean enterSetupMode;
+    private String type;
+    private boolean retry;
+    
+    
+    
+    
+
+    public Integer getDelay() {
+        return delay;
+    }
+
+    public void setDelay(Integer delay) {
+        this.delay = delay;
+    }
+
+    public Integer getRetryDelay() {
+        return this.retryDelay;
+    }
+
+    public void setRetryDelay(Integer retryDelay) {
+        this.retryDelay = retryDelay;
+    }
+
+    public boolean getEnterSetupMode() {
+        return enterSetupMode;
+    }
+
+    public void setEnterSetupMode(boolean b) {
+        this.enterSetupMode = b;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public boolean getRetry() {
+        return retry;
+    }
+
+    public void setRetry(boolean b) {
+        this.retry = b;
+    }
+
+}

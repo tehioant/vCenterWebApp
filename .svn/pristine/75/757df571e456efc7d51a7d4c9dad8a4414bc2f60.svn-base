@@ -1,0 +1,65 @@
+package fr.eseo.cc3.model.vm;
+
+public class Disk {
+	private int scsi_bus;
+	private int scsi_unit;
+	
+	private String backing_vmdk_file;
+	private String backing_type;
+
+	private String label;
+	private String type;
+	private long capacity ;
+	private int key;
+	
+	
+	public int getScsi_bus() {
+		return this.scsi_bus;
+	}
+	public void setScsi_bus(int i) {
+		this.scsi_bus = i;
+	}
+	public int getScsi_unit() {
+		return this.scsi_unit;
+	}
+	public void setScsi_unit(int i) {
+		this.scsi_unit = i;
+	}
+	public String getBacking_vmdk_file() {
+		return this.backing_vmdk_file;
+	}
+	public void setBacking_vmdk_file(String backing_vmdk_file) {
+		this.backing_vmdk_file = backing_vmdk_file;
+	}
+	public String getBacking_type() {
+		return this.backing_type;
+	}
+	public void setBacking_type(String backing_type) {
+		this.backing_type = backing_type;
+	}
+	public String getLabel() {
+		return this.label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	public String getType() {
+		return this.type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public long getCapacity() {
+		return this.capacity;
+	}
+	public void setCapacity(long capacity) {
+		this.capacity = capacity;
+	}
+	public int getKey() {
+		return this.key;
+	}
+	public void setKey(int key) {
+		this.key = key;
+	}
+
+}

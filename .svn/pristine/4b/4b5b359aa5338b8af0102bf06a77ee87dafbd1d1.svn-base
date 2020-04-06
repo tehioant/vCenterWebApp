@@ -1,0 +1,14 @@
+package fr.eseo.cc3.model;
+
+public class VmEthernet {
+	private int nic;
+	
+	public VmEthernet (int pnic) {
+		this.nic=pnic;
+	}
+	
+	public int getNic() {
+		return this.nic;
+	}
+
+}

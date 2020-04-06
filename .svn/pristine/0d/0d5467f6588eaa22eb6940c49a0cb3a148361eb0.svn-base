@@ -1,0 +1,243 @@
+package fr.eseo.cc3.model;
+
+import fr.eseo.cc3.model.vm.*;
+
+public class VirtualMachine {
+
+
+
+	private Cpu cpu;
+	private Memory memorySizeMIB;
+	private String name;
+	private String powerState;
+	private String vm;
+	private String serial_ports;
+	private String boot_devices;
+	private CDroms cdroms;
+	private Disk disk;
+	private SataAdapters sata;
+	private ScsiAdapters scsi;
+	private Floppies floppies;
+	private Nics nics;
+	private Boot boot;
+	private Hardware hardware;
+	private String guestOS;
+
+
+	//Constructeur avec paramétre
+
+	public VirtualMachine(Memory pMemorySizeMIB, String pVm, String pName, String pPowerState, Cpu pCpu) {
+
+		cpu = pCpu;
+		memorySizeMIB = pMemorySizeMIB;
+		name = pName;
+		powerState = pPowerState;
+		vm = pVm;
+
+	}
+
+	//Constructeur par default
+
+	public VirtualMachine() {
+		this(null, null, null, null, null);
+
+	}
+
+
+	public Cpu getCpu() {
+		return this.cpu;
+	}
+
+	public Memory getMemorySizeMIB() {
+		return this.memorySizeMIB;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public String getPowerState() {
+		return this.powerState;
+	}
+
+	public String getVm() {
+		return this.vm;
+	}
+
+	public void setCpu(Cpu cpu) {
+		this.cpu = cpu;
+	}
+
+	public void setMemorySizeMIB(Memory memorySizeMIB) {
+		this.memorySizeMIB = memorySizeMIB;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPowerState(String powerState) {
+		this.powerState = powerState;
+	}
+
+	public void setVm(String vm) {
+		this.vm = vm;
+	}
+
+	/**
+	 * @return the serial_ports
+	 */
+	public String getSerial_ports() {
+		return this.serial_ports;
+	}
+
+	/**
+	 * @param serial_ports the serial_ports to set
+	 */
+	public void setSerial_ports(String serial_ports) {
+		this.serial_ports = serial_ports;
+	}
+
+	/**
+	 * @return the boot_devices
+	 */
+	public String getBoot_devices() {
+		return boot_devices;
+	}
+
+	/**
+	 * @param boot_devices the boot_devices to set
+	 */
+	public void setBoot_devices(String boot_devices) {
+		this.boot_devices = boot_devices;
+	}
+
+	/**
+	 * @return the cdroms
+	 */
+	public CDroms getCdroms() {
+		return cdroms;
+	}
+
+	/**
+	 * @param cdroms the cdroms to set
+	 */
+	public void setCdroms(CDroms cdroms) {
+		this.cdroms = cdroms;
+	}
+
+	/**
+	 * @return the disk
+	 */
+	public Disk getDisk() {
+		return disk;
+	}
+
+	/**
+	 * @param disk the disk to set
+	 */
+	public void setDisk(Disk disk) {
+		this.disk = disk;
+	}
+
+	/**
+	 * @return the sata
+	 */
+	public SataAdapters getSata() {
+		return sata;
+	}
+
+	/**
+	 * @param sata the sata to set
+	 */
+	public void setSata(SataAdapters sata) {
+		this.sata = sata;
+	}
+
+	/**
+	 * @return the scsi
+	 */
+	public ScsiAdapters getScsi() {
+		return scsi;
+	}
+
+	/**
+	 * @param scsi the scsi to set
+	 */
+	public void setScsi(ScsiAdapters scsi) {
+		this.scsi = scsi;
+	}
+
+	/**
+	 * @return the floppies
+	 */
+	public Floppies getFloppies() {
+		return floppies;
+	}
+
+	/**
+	 * @param floppies the floppies to set
+	 */
+	public void setFloppies(Floppies floppies) {
+		this.floppies = floppies;
+	}
+
+	/**
+	 * @return the nics
+	 */
+	public Nics getNics() {
+		return nics;
+	}
+
+	/**
+	 * @param nics the nics to set
+	 */
+	public void setNics(Nics nics) {
+		this.nics = nics;
+	}
+
+	/**
+	 * @return the boot
+	 */
+	public Boot getBoot() {
+		return boot;
+	}
+
+	/**
+	 * @param boot the boot to set
+	 */
+	public void setBoot(Boot boot) {
+		this.boot = boot;
+	}
+
+	/**
+	 * @return the harware
+	 */
+	public Hardware getHardware() {
+		return hardware;
+	}
+
+	/**
+	 * @param harware the harware to set
+	 */
+	public void setHardware(Hardware hardware) {
+		this.hardware = hardware;
+	}
+
+	/**
+	 * @return the guestOS
+	 */
+	public String getGuestOS() {
+		return guestOS;
+	}
+
+	/**
+	 * @param guestOS the guestOS to set
+	 */
+	public void setGuestOS(String guestOS) {
+		this.guestOS = guestOS;
+	}
+
+
+}
+
